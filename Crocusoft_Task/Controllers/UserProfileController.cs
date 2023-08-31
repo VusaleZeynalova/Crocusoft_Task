@@ -9,6 +9,7 @@ namespace Crocusoft_Task.Controllers
         public IActionResult Index()
         {
             return View();
+
         }
     }
 }

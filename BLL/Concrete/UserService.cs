@@ -68,6 +68,8 @@ namespace BLL.Concrete
                     var result = await roleManager.CreateAsync(new AppRole(roleName));
 
                 }
+               var addToRoleResult=await userManager.AddToRoleAsync(appUser, roleName);
+              
             }
         }
     }
