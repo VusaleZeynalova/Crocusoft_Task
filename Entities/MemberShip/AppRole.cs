@@ -7,7 +7,14 @@ using System.Threading.Tasks;
 
 namespace Entity.MemberShip
 {
-    public class AppRole:IdentityRole<int>
+    public class AppRole : IdentityRole<int>
     {
+        public AppRole()
+        {
+                
+        }
+        public AppRole(string roleName) : base(roleName)
+        {
+        }
     }
 }

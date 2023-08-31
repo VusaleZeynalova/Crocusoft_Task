@@ -1,34 +1,63 @@
-﻿@* @{
+﻿@{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
-@using crocusofttask2.DTOs.AlbomDtos
-@model List<AlbomToListDto>
-<a href="/Collection/RegistrationAlbom" class="btn btn-outline-dark" style="margin-bottom:10px;margin-left:15px">Add</a>
-@{
-    int i = 0;
-}
-<div class="row albom" style="margin:0">
+@using DTOs.AlbumDtos
+@model List<AlbumToListDto>
+<button type="button" class="btn btn-dark" data-toggle="modal" data-target="#myModal" data-url="@Url.Action("AddAlbum","Collection")">Add </button>
 
+<style>
+    .row{
+        margin-left:0px!important;
+        margin-right:0px!important;
+        margin-top: 20px;
+    }
+</style>
+<div class="row" >
     @foreach (var p in Model)
     {
-        if (i > 0 && i % 3 == 0)
-        {
-            @:<div class="row" style="margin-top:20px"> </div>
-        }
-        <a href="@Url.Action("PhotoList", "Collection", new { id = p.AlbomId })" class="hyperlinks">
-            <div class="col-4">
-                <div class="card" style="width: 18rem;">
-                    <img src="/files/@p.AlbomImagePath" class="card-img-top" alt="...">
+        <div class="col-md-3" >
+            <a href="@Url.Action("Index", "Photo", new { id = p.AlbumId })" class="hyperlinks">
+                <div class="card">
+                    <img src="/files/@p.CoverImagePath" class="card-img-top" alt="..." width="280px" height="280px">
                     <div class="card-body">
-                        <p class="card-text">@p.AlbomName</p>
+                        <p class="card-text">@p.Title</p>
                     </div>
-                    @Html.ActionLink("Delete", "DeleteAlbom", "Collection", new { id = p.AlbomId }, new { @class = "btn btn-danger" })
+                    @Html.ActionLink("Delete", "DeleteAlbum", "Collection", new { id = p.AlbumId }, new { @class = "btn btn-danger" })
                 </div>
-            </div>
-        </a>
-        i++;
+            </a>
+        </div>
 
     }
 </div>
- *@
+<section>
+    <div class="content">
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="myPartialViewContainer"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<script>
+    $(function () {
+        $('#myModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget); // Düğme elementini al
+            var url = button.data('url'); // Partial view'in URL'sini al
+            var modal = $(this); // Modal elementini al
+            // Partial view'i yükle
+            $.get(url).done(function (data) {
+                modal.find('#myPartialViewContainer').html(data); // Partial view'i modal içine yerleştir
+            });
+        });
+    });
+</script>

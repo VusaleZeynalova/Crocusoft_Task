@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAL.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230830224027_mig2")]
-    partial class mig2
+    [Migration("20230831072837_mig1")]
+    partial class mig1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -55,16 +55,17 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("Entity.Entities.Album", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("AlbumId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AlbumId"));
 
-                    b.Property<int>("AlbumId")
-                        .HasColumnType("int");
+                    b.Property<string>("CoverImagePath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PhotoId")
+                    b.Property<int?>("PhotoId")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
@@ -73,7 +74,7 @@ namespace DAL.Migrations
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("AlbumId");
 
                     b.HasIndex("UserId");
 

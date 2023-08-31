@@ -1,5 +1,8 @@
-﻿using BLL.AuthServices.Abstract;
+﻿using BLL.Abstract;
+using BLL.AlbumServices;
+using BLL.AuthServices.Abstract;
 using BLL.AuthServices.Concrete;
+using BLL.Concrete;
 using DAL.Abstract;
 using DAL.Concrete;
 using DAL.Context;
@@ -49,9 +52,21 @@ namespace IoC
             });
             services.AddScoped<UserManager<AppUser>>();
             services.AddScoped<SignInManager<AppUser>>();
+
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+
             services.AddScoped<IAuthService, AuthService>();
+
             services.AddScoped<IAlbumRepository, AlbumRepository>();
+            services.AddScoped<IAlbumService, AlbumService>();
+
+            services.AddScoped<IPhotoRepository, PhotoRepository>();
+            services.AddScoped<IPhotoService, PhotoService>();
+
+            services.AddScoped<IAboutRepository,AboutRepository>();
+            services.AddScoped<IAboutService,AboutService>();
+
+            services.AddScoped<IUserService, UserService>();
         }
     }
 }

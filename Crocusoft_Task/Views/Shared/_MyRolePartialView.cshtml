@@ -1,0 +1,22 @@
+﻿@using DTOs.UserDtos
+@model UserUpdateDto
+<form asp-controller="Admin" asp-action="AddRole" method="post">
+    <div class="mb-3">
+        <label  class="form-label">Username</label>
+        <input type="text" readonly class="form-control" id="id" asp-for="@Model.Username" />
+        <input type="hidden" asp-for="@Model.Id" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input type="text" readonly class="form-control" id="id" asp-for="@Model.Email" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Username</label>
+        <input type="text" readonly class="form-control" id="id" asp-for="@Model.Username" />
+    </div>
+    <div class="mb-3">
+        <label  class="form-label">Role</label>
+        <input type="text" class="form-control" id="id"  name="roleName">
+    </div>
+    <button type="submit" class="btn btn-primary">Add</button>
+</form>

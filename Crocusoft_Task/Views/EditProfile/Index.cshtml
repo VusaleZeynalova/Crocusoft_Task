@@ -1,0 +1,21 @@
+﻿@{
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+@using DTOs.UserDtos
+@model UserUpdateDto
+<form asp-controller="EditProfile" asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+    <div class="mb-3">
+        <label for="phone" class="form-label">Username</label>
+        <input type="text" class="form-control" id="id" asp-for="Username" value="@Model.Username">
+    </div>
+    <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="id" asp-for="Email" value="@Model.Email">
+    </div>
+    <div class="mb-3">
+        <label for="city" class="form-label">New Password</label>
+        <input type="text" class="form-control" id="id" asp-for="Password">
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>

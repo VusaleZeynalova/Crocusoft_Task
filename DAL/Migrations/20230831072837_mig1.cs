@@ -94,16 +94,16 @@ namespace DAL.Migrations
                 name: "Albums",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    AlbumId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    AlbumId = table.Column<int>(type: "int", nullable: false),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PhotoId = table.Column<int>(type: "int", nullable: false),
+                    CoverImagePath = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PhotoId = table.Column<int>(type: "int", nullable: true),
                     UserId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Albums", x => x.Id);
+                    table.PrimaryKey("PK_Albums", x => x.AlbumId);
                     table.ForeignKey(
                         name: "FK_Albums_AspNetUsers_UserId",
                         column: x => x.UserId,
@@ -213,7 +213,7 @@ namespace DAL.Migrations
                         name: "FK_Photos_Albums_Photo",
                         column: x => x.Photo,
                         principalTable: "Albums",
-                        principalColumn: "Id");
+                        principalColumn: "AlbumId");
                 });
 
             migrationBuilder.CreateIndex(

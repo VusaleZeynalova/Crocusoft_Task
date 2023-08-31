@@ -1,5 +1,6 @@
 ﻿using BLL.AuthServices.Abstract;
 using DTOs.AuthDto;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Crocusoft_Task.Controllers
@@ -32,7 +33,7 @@ namespace Crocusoft_Task.Controllers
                     return View();
 
                 }
-                return RedirectToAction("Index","UserProfile");
+                return RedirectToAction("Index","About");
 
             }
             catch (Exception ex)
@@ -42,7 +43,7 @@ namespace Crocusoft_Task.Controllers
             }
         }
 
-        public async Task<IActionResult> Register()
+        public IActionResult Register()
         {
             return View();
         }
@@ -53,7 +54,7 @@ namespace Crocusoft_Task.Controllers
             try
             {
                 await _authService.Register(registerUserDTo);
-                return RedirectToAction("Register");
+                return RedirectToAction("SignIn");
 
             }
             catch (Exception ex)

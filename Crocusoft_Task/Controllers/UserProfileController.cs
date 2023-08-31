@@ -3,12 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Crocusoft_Task.Controllers
 {
-    [AllowAnonymous]
+    [Authorize]
     public class UserProfileController : Controller
     {
         public IActionResult Index()
         {
-            ViewBag.Name= User.Identity.Name;
             return View();
         }
     }

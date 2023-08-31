@@ -12,11 +12,21 @@ namespace DAL.UnitOfWorks
     {
         private readonly DataContext _context;
         public IAlbumRepository AlbumRepository { get; set; }
+        public IPhotoRepository PhotoRepository { get; set; }
+        public IAboutRepository AboutRepository { get; set; }
 
-        public UnitOfWork(DataContext context, IAlbumRepository albumRepository)
+
+        public UnitOfWork(
+            DataContext context,
+            IAlbumRepository albumRepository,
+            IPhotoRepository photoRepository,
+            IAboutRepository aboutRepository
+            )
         {
             _context = context;
             AlbumRepository = albumRepository;
+            PhotoRepository = photoRepository;
+            AboutRepository = aboutRepository;
         }
 
 

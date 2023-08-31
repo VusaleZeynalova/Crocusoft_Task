@@ -17,6 +17,6 @@ namespace DTOs.AlbumDtos
         [ForeignKey("Photo")]
         public AppUser User { get; set; }
         [ForeignKey("AppUser")]
-        public int Id { get; set; }
+        public int UserId { get; set; }
     }
 }

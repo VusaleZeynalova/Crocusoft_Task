@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAL.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230831000255_mig3")]
-    partial class mig3
+    [Migration("20230831114934_mig6")]
+    partial class mig6
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -48,28 +48,27 @@ namespace DAL.Migrations
                     b.Property<string>("Qualification")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("AboutId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Abouts");
                 });
 
             modelBuilder.Entity("Entity.Entities.Album", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("AlbumId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("AlbumId")
-                        .HasColumnType("int");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AlbumId"));
 
                     b.Property<string>("CoverImagePath")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("PhotoId")
-                        .HasColumnType("int");
 
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
@@ -77,7 +76,7 @@ namespace DAL.Migrations
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("AlbumId");
 
                     b.HasIndex("UserId");
 
@@ -92,7 +91,7 @@ namespace DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PhotoId"));
 
-                    b.Property<int?>("Photo")
+                    b.Property<int>("AlbumId")
                         .HasColumnType("int");
 
                     b.Property<string>("PhotoPath")
@@ -101,7 +100,7 @@ namespace DAL.Migrations
 
                     b.HasKey("PhotoId");
 
-                    b.HasIndex("Photo");
+                    b.HasIndex("AlbumId");
 
                     b.ToTable("Photos");
                 });
@@ -307,6 +306,17 @@ namespace DAL.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("Entity.Entities.About", b =>
+                {
+                    b.HasOne("Entity.MemberShip.AppUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Entity.Entities.Album", b =>
                 {
                     b.HasOne("Entity.MemberShip.AppUser", "User")
@@ -320,9 +330,13 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("Entity.Entities.Photo", b =>
                 {
-                    b.HasOne("Entity.Entities.Album", null)
-                        .WithMany("Photos")
-                        .HasForeignKey("Photo");
+                    b.HasOne("Entity.Entities.Album", "Album")
+                        .WithMany()
+                        .HasForeignKey("AlbumId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Album");
                 });
 
             modelBuilder.Entity("Entity.MemberShip.AppRoleClaim", b =>
@@ -374,11 +388,6 @@ namespace DAL.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Entity.Entities.Album", b =>
-                {
-                    b.Navigation("Photos");
                 });
 #pragma warning restore 612, 618
         }

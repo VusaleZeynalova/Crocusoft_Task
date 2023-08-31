@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "RegistrationPhoto";
+    Layout = null;
+}
+@using DTOs.PhotoDtos
+@model PhotoToAddDto
+<div class="registr-container">
+    <div class="registration">
+        <form asp-controller="Photo" asp-action="Add" method="post" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="imagePath" class="form-label">ImagePath</label>
+                <input type="file" class="form-control" id="id" asp-for="PhotoPath">
+            </div>
+            <button type="submit" class="btn btn-primary">Add</button>
+
+        </form>
+    </div>
+</div>

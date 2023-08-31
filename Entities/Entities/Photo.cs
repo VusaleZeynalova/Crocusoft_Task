@@ -1,4 +1,5 @@
 ﻿using Entity.BaseEntity;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Entity.Entities
 {
@@ -6,5 +7,9 @@ namespace Entity.Entities
     {
         public int PhotoId { get; set; }
         public  string PhotoPath { get; set; }
+        public Album Album { get; set; }
+        [ForeignKey("Album")]
+        public int AlbumId { get; set; }
+
     }
 }

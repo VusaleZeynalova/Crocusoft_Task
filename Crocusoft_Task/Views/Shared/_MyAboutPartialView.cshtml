@@ -1,0 +1,27 @@
+﻿@{
+    Layout = null;
+}
+@using DTOs.AboutDtos
+@model AboutToAddDto
+<form asp-controller="About" asp-action="Add" method="post" >
+    <div class="mb-3">
+        <label for="website" class="form-label">About</label>
+        <textarea type="text" class="form-control" id="id" asp-for="AboutText" placeholder="Enter About"></textarea>
+    </div>
+    <div class="mb-3">
+        <label for="phone" class="form-label">Phone</label>
+        <input type="text" class="form-control" id="id" asp-for="Phone" placeholder="Enter Phone">
+    </div>
+    <div class="mb-3">
+        <label for="city" class="form-label">City</label>
+        <input type="text" class="form-control" id="id" asp-for="City" placeholder="Enter City">
+    </div>
+    <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="id" asp-for="Email" placeholder="Enter Email">
+    </div><div class="mb-3">
+        <label for="freelance" class="form-label">Qualification</label>
+        <input type="text" class="form-control" id="id" asp-for="Qualification">
+    </div>
+    <button type="submit" class="btn btn-primary">Add</button>
+</form>

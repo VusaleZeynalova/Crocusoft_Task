@@ -1,38 +1,74 @@
-﻿
-@{
+﻿@{
     Layout = "/Views/Shared/_Layout.cshtml";
 
 }
 @using DTOs.AuthDto
 @model RegisterUserDto
-<form asp-action="Register" asp-controller="Auth" method="post">
-    <div asp-validation-summary="All" class="text-danger"></div>
-    <div class="row">
-        <div class="col-md-8">
-            <div class="form-group">
-                <label>Username</label>
-                <input asp-for="@Model.Username" class="form-control" />
-                <span asp-validation-for="@Model.Username" class="text-danger"></span>
+<style>
+    .login-card-description {
+        font-size: 40px;
+        color: #000;
+        font-weight: bolder;
+        margin-bottom: 23px;
+    }
+
+    .container {
+        margin-top: 100px;
+    }
+
+    .login-card .form-control {
+        padding: 0px 25px;
+    }
+</style>
+<main class="d-flex align-items-center py-3 py-md-0">
+    <div class="container">
+        <div class="card login-card">
+            <div class="row no-gutters">
+                <div class="col-md-5">
+                    <img src="~/AdminLTE-3.0.4/images/login.png" alt="login" class="login-card-img" style="object-fit: contain">
+                </div>
+                <div class="col-md-7">
+                    <div class="card-body">
+                        <div class="brand-wrapper">
+                        </div>
+                        <p class="login-card-description">Register</p>
+                        <form asp-action="Register" asp-controller="Auth" method="post">
+                            <div asp-validation-summary="All" class="text-danger"></div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Username</label>
+                                        <input asp-for="@Model.Username" class="form-control" />
+                                        <span asp-validation-for="@Model.Username" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label asp-for="@Model.Email"></label>
+                                        <input asp-for="@Model.Email" class="form-control" />
+                                        <span asp-validation-for="@Model.Email" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mb-4">
+                                    <div class="form-group">
+                                        <label asp-for="@Model.Password"></label>
+                                        <input asp-for="@Model.Password" class="form-control" />
+                                        <span asp-validation-for="@Model.Password" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <button type="submit" class="btn btn-primary" style="width:100%">Register</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="col-md-8">
-            <div class="form-group">
-                <label asp-for="@Model.Email"></label>
-                <input asp-for="@Model.Email" class="form-control" />
-                <span asp-validation-for="@Model.Email" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="col-md-8 mb-4">
-            <div class="form-group">
-                <label asp-for="@Model.Password"></label>
-                <input asp-for="@Model.Password" class="form-control" />
-                <span asp-validation-for="@Model.Password" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="col-md-8">
-        <button type="submit" class="btn btn-primary" style="width:100%">Register</button>
         </div>
     </div>
-</form>
+</main>
 
 
+<script>
+    $(".select-add-placeholder").prepend("<option value='' disabled selected>Seçin...</option>");
+</script>

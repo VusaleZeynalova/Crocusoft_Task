@@ -10,6 +10,8 @@ namespace DAL.UnitOfWorks
     public interface IUnitOfWork
     {
         public IAlbumRepository AlbumRepository { get; set; }
+        public IPhotoRepository PhotoRepository { get; set; }
+        public IAboutRepository AboutRepository { get; set; }
         Task Commit();
     }
 }

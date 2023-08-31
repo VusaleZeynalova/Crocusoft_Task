@@ -1,0 +1,20 @@
+﻿﻿@{
+    Layout = null;
+}
+@using DTOs.AlbumDtos
+@model AlbumToAddDto
+<div class="registr-container">
+    <div class="registration">
+        <form asp-controller="Collection" asp-action="AddAlbum" method="post" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="name" class="form-label">Albom Name</label>
+                <input type="text" class="form-control" id="id" asp-for="Title" placeholder="Enter name">
+            </div>
+            <div class="mb-3">
+                <label for="imagePath" class="form-label">ImagePath</label>
+                <input type="file" class="form-control" id="id" asp-for="CoverImagePath">
+            </div>
+            <button type="submit" class="btn btn-primary">Add</button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,102 @@
+﻿@{
+    Layout = "/Views/Shared/_AdminLayout.cshtml";
+}
+@using DTOs.UserDtos
+@model List<UserToListDto>
+<table class="table table-bordered">
+    <thead>
+    <th>Id</th>
+    <th>Username</th>
+    <th>Email</th>
+    <th>Roles</th>
+    <th>Permissions</th>
+    </thead>
+    <tbody>
+        @foreach (var u in Model)
+        {
+
+            <tr>
+                <td>
+                    @u.Id
+                </td>
+                <td>
+                    @u.Username
+                </td>
+                <td>
+                    @u.Email
+                </td>
+
+                <td>
+                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myRoleModal" data-url="@Url.Action("AddRole","Admin",new{id=u.Id})">Add Role </button>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myPermissionModal" data-url="@Url.Action("AddPermission","Admin",new{id=u.Id})">Add Permission </button>
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<section>
+    <div class="content">
+        <div class="modal fade" id="myRoleModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="myPartialViewContainer"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="content">
+        <div class="modal fade" id="myPermissionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="myPartialViewContainer"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<script>
+    $(function () {
+        $('#myPermissionModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget); // Düğme elementini al
+            var url = button.data('url'); // Partial view'in URL'sini al
+            var modal = $(this); // Modal elementini al
+            // Partial view'i yükle
+            $.get(url).done(function (data) {
+                modal.find('#myPartialViewContainer').html(data); // Partial view'i modal içine yerleştir
+            });
+        });
+    });
+</script>
+
+<script>
+    $(function () {
+        $('#myRoleModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget); // Düğme elementini al
+            var url = button.data('url'); // Partial view'in URL'sini al
+            var modal = $(this); // Modal elementini al
+            // Partial view'i yükle
+            $.get(url).done(function (data) {
+                modal.find('#myPartialViewContainer').html(data); // Partial view'i modal içine yerleştir
+            });
+        });
+    });
+</script>

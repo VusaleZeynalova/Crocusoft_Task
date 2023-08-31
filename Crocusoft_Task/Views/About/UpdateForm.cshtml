@@ -1,0 +1,32 @@
+﻿@{
+    ViewData["Title"] = "UpdateForm";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+@using DTOs.AboutDtos
+@model AboutToUpdateDto
+<form asp-controller="About" asp-action="Edit" method="post">
+    <input type="hidden" asp-for="AboutId" />
+    <input type="hidden" asp-for="UserId"/>
+    <div class="mb-3">
+        <label for="website" class="form-label">About</label>
+        <textarea type="text" class="form-control" id="id" asp-for="AboutText" value="@Model.AboutText"></textarea>
+    </div>
+    <div class="mb-3">
+        <label for="phone" class="form-label">Phone</label>
+        <input type="text" class="form-control" id="id" asp-for="Phone" value="@Model.Phone">
+    </div>
+    <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="id" asp-for="Email" value="@Model.Email">
+    </div>
+    <div class="mb-3">
+        <label for="city" class="form-label">City</label>
+        <input type="text" class="form-control" id="id" asp-for="City" value="@Model.City">
+    </div>
+    <div class="mb-3">
+        <label for="degree" class="form-label">Qualification</label>
+        <input type="text" class="form-control" id="id" asp-for="Qualification" value="@Model.Qualification">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
