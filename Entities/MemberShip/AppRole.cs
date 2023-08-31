@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entitty.MemberShip
+namespace Entity.MemberShip
 {
-    public class AppRole:IdentityUserRole<int>
+    public class AppRole:IdentityRole<int>
     {
     }
 }

@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Entity.Entities;
+using Entity.MemberShip;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,11 +10,14 @@ using System.Threading.Tasks;
 
 namespace DAL.Context
 {
-    public class DataContext:IdentityDbContext
+    public class DataContext:IdentityDbContext<AppUser,AppRole,int,AppUserClaim,AppUserRole,AppUserLogin,AppRoleClaim,AppUserToken>
     {
         public DataContext(DbContextOptions<DataContext> options):base(options)
         {
                 
         }
+        public DbSet<Album> Albums { get; set; }
+        public DbSet<About> Abouts { get; set; }
+        public DbSet<Photo> Photos { get; set; }
     }
 }

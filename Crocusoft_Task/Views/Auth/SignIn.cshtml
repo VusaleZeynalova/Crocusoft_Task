@@ -1,0 +1,36 @@
+﻿
+@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+}
+@using DTOs.AuthDto
+@model UserLoginDto
+<style>
+    h1 {
+        margin-left: 60px;
+    }
+</style>
+
+<h1>@ViewData["Title"]</h1>
+<div class="row login">
+    <div class="col-md-8">
+        <section>
+            <form asp-action="SignIn" asp-asp-controller="Auth" method="post">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label>Username</label>
+                    <input asp-for="Username" class="form-control" />
+                    <span asp-validation-for="Username" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-4">
+                    <label >Password</label>
+                    <input asp-for="Password" class="form-control" type="password"/>
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary" style="width:100%">Log in</button>
+                </div>
+            </form>
+        </section>
+    </div>
+
+</div>

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace Entitty.MemberShip
+namespace Entity.MemberShip
 {
     public class AppUser:IdentityUser<int>
     {
